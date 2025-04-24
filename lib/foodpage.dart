@@ -100,7 +100,7 @@ class _FoodPageState extends State<FoodPage> {
                 Column(
                   children: [
                     Container(
-                      color: Colors.red,
+                      color: Colors.blue,
                       height: 50,
                       width: 50,
                       child: Image.asset('images/westfood.jpg'),
