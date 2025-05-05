@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:grade_project_test1/categories.dart';
+import 'package:grade_project_test1/details.dart';
 // import 'package:grade_project_test1/foodpage.dart';
 
 class FoodPage extends StatefulWidget {
@@ -9,48 +11,42 @@ class FoodPage extends StatefulWidget {
 }
 
 class _FoodPageState extends State<FoodPage> {
-  List plates = [
+  List categories = [
     {
-      "image": "images/photo.jpg",
-      "title": "burger",
-      "subtitle": "yummmmmmmmmmmmmmmmy",
-      "price": "3\$"
+      "image": 'images/westfood.jpg',
+      "title": "western food",
     },
     {
-      "image": "images/photo.jpg",
-      "title": "shawerma",
-      "subtitle": "yummmmmmmmmmmmmmmmy",
-      "price": "2\$"
+      "image": "images/estfood.jpg",
+      "title": "estern food",
     },
     {
-      "image": "images/photo.jpg",
-      "title": "pancake",
-      "subtitle": "yummmmmmmmmmmmmmmmy",
-      "price": "2.5\$"
+      "image": "images/sweets.jpg",
+      "title": "sweets",
     },
     {
-      "image": "images/photo.jpg",
-      "title": "burger2",
-      "subtitle": "yummmmmmmmmmmmmmmmy",
-      "price": "4\$"
+      "image": "images/westfood.jpg",
+      "title": "western food",
     },
     {
-      "image": "images/photo.jpg",
-      "title": "burger3",
-      "subtitle": "yummmmmmmmmmmmmmmmy",
-      "price": "3.5\$"
+      "image": "images/estfood.jpg",
+      "title": "estern food",
     },
+    {"image": "images/sweets.jpg", "title": "sweets"},
     {
       "image": "images/photo.jpg",
       "title": "burger5",
-      "subtitle": "yummmmmmmmmmmmmmmmy",
-      "price": "3\$"
     },
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        //backgroundColor: Colors.green,
+        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.search))],
+      ),
+      drawer: Drawer(),
       body: Container(
         padding: const EdgeInsets.all(20),
         child: ListView(
@@ -75,7 +71,7 @@ class _FoodPageState extends State<FoodPage> {
               width: 200,
               height: 200,
               child: Image.asset(
-                'images/photo.jpg',
+                'images/foood.jpg',
                 //width: 100,
                 //height: 100,
                 fit: BoxFit.fill,
@@ -83,33 +79,111 @@ class _FoodPageState extends State<FoodPage> {
             ),
             Row(
               children: [
+                Text("Categories",
+                    style: Theme.of(context).textTheme.bodyLarge),
+                Spacer(), // ندفش العناصر للأخير
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => CategoriesDetails()));
+                    },
+                    child: Text(
+                      "view all",
+                      style: Theme.of(context).textTheme.bodySmall,
+                    )),
+              ],
+            ),
+            SizedBox(
+              //هيه الي زبطتلي الخط
+              height: 120, // Increased to avoid overflow
+              child: ListView.builder(
+                itemCount: categories.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, i) {
+                  return InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ItemsDetails()));
+                    },
+                    child: Container(
+                      color: Colors.grey[200],
+                      width: 80,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            height: 60,
+                            width: 70,
+                            child: Image.asset(
+                              categories[i]['image'],
+                            ),
+                            // padding: EdgeInsets.all(20)
+                          ),
+                          Container(
+                            height: 5,
+                          ),
+                          Text(
+                            textAlign: TextAlign.center,
+                            categories[i]['title'],
+                            //style: Theme.of(context).textTheme.bodyMedium,
+                            softWrap: true,
+                            overflow: TextOverflow.visible,
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+            Row(
+              children: [
                 Text(
-                  "Categories",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  "Favorites",
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 Spacer(), // ندفش العناصر للأخير
                 TextButton(
                     onPressed: () {},
                     child: Text(
                       "view all",
+                      style: Theme.of(context).textTheme.bodySmall,
                     )),
               ],
             ),
-            Row(
-              children: [
-                Column(
-                  children: [
-                    Container(
-                      color: Colors.red,
-                      height: 50,
-                      width: 50,
-                      child: Image.asset('images/westfood.jpg'),
-                    ),
-                    Text("western food")
-                  ],
-                )
-              ],
-            )
+            Container(
+              padding: EdgeInsets.all(20),
+              width: 200,
+              height: 200,
+              child: Image.asset(
+                'images/food1.jpg',
+                //width: 100,
+                //height: 100,
+                fit: BoxFit.fill,
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(20),
+              width: 200,
+              height: 200,
+              child: Image.asset(
+                'images/food1.jpg',
+                //width: 100,
+                //height: 100,
+                fit: BoxFit.fill,
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(20),
+              width: 200,
+              height: 200,
+              child: Image.asset(
+                'images/food1.jpg',
+                //width: 100,
+                //height: 100,
+                fit: BoxFit.fill,
+              ),
+            ),
           ],
         ),
       ),

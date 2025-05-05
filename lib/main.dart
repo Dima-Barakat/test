@@ -12,6 +12,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+          appBarTheme: AppBarTheme(backgroundColor: Colors.green),
+          textTheme: TextTheme(
+              bodyLarge: TextStyle(
+                  color: Colors.blueAccent,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
+              bodyMedium: TextStyle(color: Colors.green, fontSize: 16),
+              bodySmall: TextStyle(color: Colors.red, fontSize: 14))),
       debugShowCheckedModeBanner: false,
       home: FoodPage(),
     );
